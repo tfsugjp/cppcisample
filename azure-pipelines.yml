@@ -30,8 +30,11 @@ steps:
 - task: VSTest@2
   displayName: 'Run VSTest'
   inputs:
-    testSelector: 'testRun'
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\*test*.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
-    runInParallel: false
-    platform: $(buildPlatform)
-    configuration: $(buildConfiguration)
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
