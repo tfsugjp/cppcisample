@@ -6,6 +6,11 @@
 trigger:
 - master
 
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'x64'
+  buildConfiguration: 'Release'
+
 pool:
   vmImage: 'windows-latest'
 
@@ -13,9 +18,9 @@ steps:
 - task: VSBuild@1
   displayName: 'Visual Studio Build'
   inputs:
-    solution: '**\*.sln'
-    platform: 'x64'
-    configuration: 'Release'
+    solution: $(solution)
+    platform: $(buildPlatform)
+    configuration: $(buildConfiguration)
     maximumCpuCount: true
 - task: VisualStudioTestPlatformInstaller@1
   displayName: 'Install Latest VSTest'
@@ -28,3 +33,5 @@ steps:
     testSelector: 'testRun'
     searchFolder: '$(System.DefaultWorkingDirectory)'
     runInParallel: false
+    platform: $(buildPlatform)
+    configuration: $(buildConfiguration)
