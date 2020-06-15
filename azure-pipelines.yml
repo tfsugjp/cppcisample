@@ -14,8 +14,8 @@ steps:
   displayName: 'Visual Studio Build'
   inputs:
     solution: '**\*.sln'
-    platform: 'Release'
-    configuration: 'x86'
+    platform: 'x64'
+    configuration: 'Release'
     maximumCpuCount: true
 - task: VisualStudioTestPlatformInstaller@1
   displayName: 'Install Latest VSTest'
